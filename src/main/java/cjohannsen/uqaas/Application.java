@@ -1,4 +1,4 @@
-package cjohannsen.dfm;
+package cjohannsen.uqaas;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -18,17 +18,5 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-            final var dexcomService = ctx.getBean(DexcomService.class);
-            final var result = dexcomService.getDataRange();
-            log.info("Result: " + result);
-        };
-    }
 
-    @Bean
-    public HttpClient httpClient() {
-        return HttpClient.newHttpClient();
-    }
 }
