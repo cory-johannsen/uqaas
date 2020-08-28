@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class UnnecessaryQuoteResponse {
     String sourceSentence;
     Integer minimumReplacementCount;
+    Integer maximumReplacementCount;
     String resultSentence;
 }

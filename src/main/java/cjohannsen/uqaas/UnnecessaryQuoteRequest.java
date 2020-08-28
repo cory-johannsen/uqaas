@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class UnnecessaryQuoteRequest {
     String sourceSentence;
     Integer minimumReplacementCount;
+    Integer maximumReplacementCount;
 }

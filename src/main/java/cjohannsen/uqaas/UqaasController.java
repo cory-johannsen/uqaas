@@ -18,8 +18,9 @@ public class UqaasController {
     public UnnecessaryQuoteResponse enquotify(@RequestBody UnnecessaryQuoteRequest request) {
         final var sourceSentence = request.getSourceSentence();
         final var minimumReplacementCount = request.getMinimumReplacementCount();
+        final var maximumReplacementCount = request.getMaximumReplacementCount();
         final var tokens = sourceSentence.split(" ");
-        final var replacementCount = (int) Math.max(minimumReplacementCount, Math.random() * tokens.length);
+        final var replacementCount = (int) Math.max(minimumReplacementCount, Math.min(maximumReplacementCount, Math.random() * tokens.length));
         final var replacedIndices = new ArrayList<Integer>();
         for(int i = 0; i < replacementCount; i++) {
             final var nextReplacementIndex = nextReplacementIndex(replacementCount, replacedIndices);
@@ -28,7 +29,7 @@ public class UqaasController {
             replacedIndices.add(nextReplacementIndex);
         }
         final var resultSentence = Arrays.stream(tokens).collect(Collectors.joining(" "));
-        return new UnnecessaryQuoteResponse(sourceSentence, minimumReplacementCount, resultSentence);
+        return new UnnecessaryQuoteResponse(sourceSentence, minimumReplacementCount, maximumReplacementCount, resultSentence);
     }
 
     private int nextReplacementIndex(int tokenCount, List<Integer> usedIndices) {
