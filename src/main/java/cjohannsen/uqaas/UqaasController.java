@@ -1,5 +1,6 @@
 package cjohannsen.uqaas;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@Api
 public class UqaasController {
 
     @PostMapping(value = "/enquotify")
